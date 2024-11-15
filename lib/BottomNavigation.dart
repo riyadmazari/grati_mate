@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'features/daily_affirmation/ui/daily_affirmation_page.dart';
 import 'features/weekly_checkin/ui/weekly_checkin_page.dart';
 import 'features/monthly_reflection/ui/monthly_reflection_page.dart';
-import 'features/progress_overview/ui/progress_overview_page.dart';
-import 'features/custom_prompts/ui/custom_prompts_page.dart';
+import 'features/dummy/dummy_page.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -13,16 +11,15 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   int _selectedIndex = 0;
 
-  // List of pages for each bottom nav item
-  static const List<Widget> _pages = <Widget>[
-    DailyAffirmationPage(),
+  // List of pages for each bottom navigation tab
+  static final List<Widget> _pages = <Widget>[
+    DummyPage(title: 'Daily Affirmation', color: Colors.orange),
     WeeklyCheckInPage(),
     MonthlyReflectionPage(),
-    ProgressOverviewPage(),
-    CustomPromptsPage(),
+    DummyPage(title: 'Progress Overview', color: Colors.blue),
+    DummyPage(title: 'Custom Prompts', color: Colors.green),
   ];
 
-  // Updates the index when a bottom nav item is tapped
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -45,7 +42,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             label: 'Weekly',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.monthly_calendar),
+            icon: Icon(Icons.calendar_month),
             label: 'Monthly',
           ),
           BottomNavigationBarItem(
