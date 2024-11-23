@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart'; // Ensure this file exists (see Step 2)
+import 'package:hive_flutter/hive_flutter.dart';
+import 'routes/bottom_navigation.dart';
+import 'data/models/affirmation_model.dart';
+import 'data/models/weekly_data_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Hive.initFlutter();
+
+  // Register Hive Adapters
+  Hive.registerAdapter(AffirmationModelAdapter());
+  Hive.registerAdapter(WeeklyDataModelAdapter());
+
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -18,9 +24,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Grati Mate',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        useMaterial3: true, // Ensure Material 3 Typography is enabled
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const Placeholder(), // Replace with your home widget
+
+      home: BottomNavigation(),
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'features/weekly_checkin/ui/weekly_checkin_page.dart';
-import 'features/monthly_reflection/ui/monthly_reflection_page.dart';
-import 'features/dummy/dummy_page.dart';
+import '../features/daily_affirmation/daily_affirmation_page.dart';
+import '../features/weekly_checkin/weekly_checkin_page.dart';
+import '../features/monthly_reflection/monthly_reflection_page.dart';
+import '../features/progress_overview/progress_overview_page.dart';
+import '../features/custom_prompts/custom_prompts_page.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -11,19 +13,21 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   int _selectedIndex = 0;
 
-  // List of pages for each bottom navigation tab
-  static final List<Widget> _pages = <Widget>[
-    DummyPage(title: 'Daily Affirmation', color: Colors.orange),
+  // List of pages for navigation
+  final List<Widget> _pages = [
+    DailyAffirmationPage(),
     WeeklyCheckInPage(),
     MonthlyReflectionPage(),
-    DummyPage(title: 'Progress Overview', color: Colors.blue),
-    DummyPage(title: 'Custom Prompts', color: Colors.green),
+    ProgressOverviewPage(),
+    CustomPromptsPage(),
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index < _pages.length) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   @override
@@ -55,7 +59,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.purple,
+        unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
       ),
     );

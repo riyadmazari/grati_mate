@@ -29,18 +29,27 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
-    sdk: flutter
-  firebase_core: ^2.15.0
-  cloud_firestore: ^4.10.0
+    sdk: flutter 
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  syncfusion_flutter_calendar: ^20.1.0
+  word_cloud: ^1.0.1 # Replace with an actual library if needed
+  sentiment_dart: ^0.0.5
+  # firebase_core: ^2.0.0
+  # cloud_firestore: ^3.0.0
+
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.4.6
+  hive_generator: ^2.0.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
