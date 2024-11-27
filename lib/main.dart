@@ -1,8 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'routes/bottom_navigation.dart';
 import 'data/models/affirmation_model.dart';
 import 'data/models/weekly_data_model.dart';
+import 'data/models/progress_data_model.dart';
+import 'data/models/inspiration_model.dart';
+import 'data/models/monthly_reflection_model.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,9 +17,12 @@ void main() async {
   // Register Hive Adapters
   Hive.registerAdapter(AffirmationModelAdapter());
   Hive.registerAdapter(WeeklyDataModelAdapter());
+  Hive.registerAdapter(ProgressDataModelAdapter());
+  Hive.registerAdapter(InspirationModelAdapter());
 
   runApp(const MyApp());
 }
+
 
 
 class MyApp extends StatelessWidget {

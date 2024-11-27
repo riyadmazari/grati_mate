@@ -52,7 +52,7 @@ class StreakTracker extends StatelessWidget {
     return Column(
       children: [
         const Text(
-          "Current Streak",
+          "Max Streak",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         Text(

@@ -3,7 +3,7 @@ import '../features/daily_affirmation/daily_affirmation_page.dart';
 import '../features/weekly_checkin/weekly_checkin_page.dart';
 import '../features/monthly_reflection/monthly_reflection_page.dart';
 import '../features/progress_overview/progress_overview_page.dart';
-import '../features/custom_prompts/custom_prompts_page.dart';
+import '../features/inspiration_wall/inspiration_wall_page.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     WeeklyCheckInPage(),
     MonthlyReflectionPage(),
     ProgressOverviewPage(),
-    CustomPromptsPage(),
+    InspirationWallPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -54,8 +54,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
             label: 'Progress',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.format_quote),
-            label: 'Prompts',
+            icon: Icon(Icons.lightbulb),
+            label: 'Inspiration',
           ),
         ],
         currentIndex: _selectedIndex,

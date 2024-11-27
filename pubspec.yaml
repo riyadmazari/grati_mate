@@ -35,6 +35,9 @@ dependencies:
   syncfusion_flutter_calendar: ^20.1.0
   word_cloud: ^1.0.1 # Replace with an actual library if needed
   sentiment_dart: ^0.0.5
+  table_calendar: ^3.0.8
+  fl_chart: ^0.55.2
+  shared_preferences: ^2.0.15
   # firebase_core: ^2.0.0
   # cloud_firestore: ^3.0.0
 

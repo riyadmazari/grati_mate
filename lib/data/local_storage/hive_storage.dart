@@ -3,7 +3,7 @@ import '../models/affirmation_model.dart';
 import '../models/weekly_data_model.dart';
 import '../models/monthly_reflection_model.dart';
 import '../models/progress_data_model.dart';
-import '../models/prompt_model.dart';
+import '../models/inspiration_model.dart';
 
 class HiveStorage {
   static const String affirmationBoxName = "affirmations";
@@ -76,30 +76,21 @@ class HiveStorage {
     return box.values.where((item) => item.type == type).toList();
   }
 
-  static const String promptBoxName = "prompts";
+  static const String inspirationBoxName = "inspirationWall";
 
-  static Future<void> savePrompt(PromptModel prompt) async {
-    final box = await Hive.openBox<PromptModel>(promptBoxName);
-    await box.add(prompt);
+  static Future<void> saveInspiration(InspirationModel inspiration) async {
+    final box = await Hive.openBox<InspirationModel>(inspirationBoxName);
+    await box.add(inspiration);
   }
 
-  static Future<List<PromptModel>> getAllPrompts() async {
-    final box = await Hive.openBox<PromptModel>(promptBoxName);
+  static Future<List<InspirationModel>> getAllInspirations() async {
+    final box = await Hive.openBox<InspirationModel>(inspirationBoxName);
     return box.values.toList();
   }
 
-  static Future<void> togglePin(PromptModel prompt) async {
-  final box = await Hive.openBox<PromptModel>(promptBoxName);
-  final updatedPrompt = PromptModel(
-    text: prompt.text,
-    isPinned: !prompt.isPinned, // Create a new object with the toggled value
-    date: prompt.date,
-  );
-
-  // Find the key of the existing object and replace it
-  final key = box.keyAt(box.values.toList().indexOf(prompt));
-  await box.put(key, updatedPrompt);
-}
+  static Future<void> deleteInspiration(InspirationModel inspiration) async {
+    await inspiration.delete();
+  }
 
 
 }

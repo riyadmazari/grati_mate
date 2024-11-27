@@ -1,37 +1,34 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'prompt_model.dart';
+part of 'inspiration_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PromptModelAdapter extends TypeAdapter<PromptModel> {
+class InspirationModelAdapter extends TypeAdapter<InspirationModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 4;
 
   @override
-  PromptModel read(BinaryReader reader) {
+  InspirationModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return PromptModel(
+    return InspirationModel(
       text: fields[0] as String,
-      isPinned: fields[1] as bool,
-      date: fields[2] as DateTime,
+      date: fields[1] as DateTime,
     );
   }
 
   @override
-  void write(BinaryWriter writer, PromptModel obj) {
+  void write(BinaryWriter writer, InspirationModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(2)
       ..writeByte(0)
       ..write(obj.text)
       ..writeByte(1)
-      ..write(obj.isPinned)
-      ..writeByte(2)
       ..write(obj.date);
   }
 
@@ -41,7 +38,7 @@ class PromptModelAdapter extends TypeAdapter<PromptModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PromptModelAdapter &&
+      other is InspirationModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
