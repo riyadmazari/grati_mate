@@ -4,23 +4,22 @@ import '../models/weekly_data_model.dart';
 import '../models/monthly_reflection_model.dart';
 import '../models/progress_data_model.dart';
 import '../models/inspiration_model.dart';
+import '/services/sync_service.dart';
+
+// Now you can use SyncService in this file
 
 class HiveStorage {
   static const String affirmationBoxName = "affirmations";
   static const String weeklyDataBoxName = "weekly";
+  static const String monthlyReflectionBoxName = "monthly_reflections";
+  static const String progressBoxName = "progress";
+  static const String inspirationBoxName = "inspirationWall";
 
   // Affirmations
   static Future<void> saveAffirmation(AffirmationModel affirmation) async {
     final box = await Hive.openBox<AffirmationModel>(affirmationBoxName);
     await box.add(affirmation);
-  }
-
-  static Future<AffirmationModel?> getLatestAffirmation() async {
-    final box = await Hive.openBox<AffirmationModel>(affirmationBoxName);
-    if (box.isNotEmpty) {
-      return box.values.last;
-    }
-    return null;
+    await SyncService.syncAffirmations(); // Sync with Firebase
   }
 
   static Future<List<AffirmationModel>> getAllAffirmations() async {
@@ -28,10 +27,16 @@ class HiveStorage {
     return box.values.toList();
   }
 
+  static Future<AffirmationModel?> getLatestAffirmation() async {
+    final box = await Hive.openBox<AffirmationModel>(affirmationBoxName);
+    return box.isNotEmpty ? box.values.last : null;
+  }
+
   // Weekly Data
   static Future<void> saveWeeklyData(WeeklyDataModel weeklyData) async {
     final box = await Hive.openBox<WeeklyDataModel>(weeklyDataBoxName);
     await box.add(weeklyData);
+    await SyncService.syncWeeklyData(); // Sync with Firebase
   }
 
   static Future<List<WeeklyDataModel>> getAllWeeklyData() async {
@@ -41,17 +46,14 @@ class HiveStorage {
 
   static Future<WeeklyDataModel?> getLatestWeeklyData() async {
     final box = await Hive.openBox<WeeklyDataModel>(weeklyDataBoxName);
-    if (box.isNotEmpty) {
-      return box.values.last;
-    }
-    return null;
+    return box.isNotEmpty ? box.values.last : null;
   }
 
-  static const String monthlyReflectionBoxName = "monthly_reflections";
-
+  // Monthly Reflections
   static Future<void> saveMonthlyReflection(MonthlyReflectionModel reflection) async {
     final box = await Hive.openBox<MonthlyReflectionModel>(monthlyReflectionBoxName);
     await box.add(reflection);
+    await SyncService.syncMonthlyReflections(); // Sync with Firebase
   }
 
   static Future<List<MonthlyReflectionModel>> getAllMonthlyReflections() async {
@@ -59,11 +61,11 @@ class HiveStorage {
     return box.values.toList();
   }
 
-  static const String progressBoxName = "progress";
-
+  // Progress Data
   static Future<void> saveProgress(ProgressDataModel progress) async {
     final box = await Hive.openBox<ProgressDataModel>(progressBoxName);
     await box.add(progress);
+    await SyncService.syncProgressData(); // Sync with Firebase
   }
 
   static Future<List<ProgressDataModel>> getProgressData() async {
@@ -71,16 +73,11 @@ class HiveStorage {
     return box.values.toList();
   }
 
-  static Future<List<ProgressDataModel>> getProgressByType(String type) async {
-    final box = await Hive.openBox<ProgressDataModel>(progressBoxName);
-    return box.values.where((item) => item.type == type).toList();
-  }
-
-  static const String inspirationBoxName = "inspirationWall";
-
+  // Inspiration Wall
   static Future<void> saveInspiration(InspirationModel inspiration) async {
     final box = await Hive.openBox<InspirationModel>(inspirationBoxName);
     await box.add(inspiration);
+    await SyncService.syncInspirationWall(); // Sync with Firebase
   }
 
   static Future<List<InspirationModel>> getAllInspirations() async {
@@ -90,7 +87,15 @@ class HiveStorage {
 
   static Future<void> deleteInspiration(InspirationModel inspiration) async {
     await inspiration.delete();
+    await SyncService.syncInspirationWall(); // Sync with Firebase after deletion
   }
 
-
+  // Global Synchronization
+  static Future<void> syncAllData() async {
+    await SyncService.syncAffirmations();
+    await SyncService.syncWeeklyData();
+    await SyncService.syncMonthlyReflections();
+    await SyncService.syncProgressData();
+    await SyncService.syncInspirationWall();
+  }
 }

@@ -8,7 +8,7 @@ part of 'weekly_data_model.dart';
 
 class WeeklyDataModelAdapter extends TypeAdapter<WeeklyDataModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 1;
 
   @override
   WeeklyDataModel read(BinaryReader reader) {

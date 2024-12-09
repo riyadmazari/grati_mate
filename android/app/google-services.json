@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "448029162337",
+    "firebase_url": "https://gratimate-6ba10-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "gratimate-6ba10",
+    "storage_bucket": "gratimate-6ba10.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448029162337:android:0bc53fb1877552a632a320",
+        "android_client_info": {
+          "package_name": "com.example.grati_mate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnrpekThyUKl9HJ54XGyfaKh7-eV1DRu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

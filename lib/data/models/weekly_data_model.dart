@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 part 'weekly_data_model.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 1)
 class WeeklyDataModel {
   @HiveField(0)
   final String focus;

@@ -24,7 +24,8 @@ class _WeeklyCheckInPageState extends State<WeeklyCheckInPage> {
   void initState() {
     super.initState();
     _checkCurrentWeekSaved();
-    _loadWeeklyData();
+ 
+   _loadWeeklyData();
     _loadWeeklyAffirmations();
   }
 
